@@ -1,0 +1,378 @@
+﻿@model BuyingMetal.Models.PriceModel
+
+@{
+	ViewBag.Title = "Покупка металла Киев, Украина";
+}
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container main-menu">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">
+				<i class="fa fa-cogs"></i> ukrmetal.<i class="fa fa-info"></i>n.ua
+			</a>
+
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li class="active"><a href="/#prices">Все Цены</a></li>
+				<li><a href="/#r">Доставка и Оплата</a></li>
+				<li><a href="/#call">Заказать звонок</a></li>
+				<li><a href="/#contact">Контакты</a></li>
+				<li><a href="/#about">О нас</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div id="headerwrap">
+	<div class="container">
+		<div class="row centered">
+			<div class="col-lg-8 col-lg-offset-2">
+				<h1>
+					Покупка металла
+					<br> <span style="text-transform: lowercase">в</span><br>
+					<span style="text-transform: initial">Киеве</span>
+					<span style="text-transform: lowercase">и</span> <span style="text-transform: initial">Украине</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container w" id="prices">
+	<div class="row centered">
+		<div class="col-lg-12">
+			<h1 class="title">Цены на покупку популярных металлов</h1>
+		</div>
+	</div>
+	<div class="row centered">
+		<br><br>
+		<div class="col-lg-4" style="cursor:pointer" onclick="SetEditForm(@Model.Block1.Id,'@Model.Block1.Name','@Model.Block1.Price','@Model.Block1.Description')">
+			<i class="fa fa-heart"></i>
+			<h4 class="upc">@Model.Block1.Name</h4>
+			<p>Покупаем @Model.Block1.Name от <b>@Model.Block1.Price грн за кг</b>.</p>
+			<p style="text-align: left;">@Model.Block1.Description</p>
+		</div>
+		<div class="col-lg-4" style="cursor:pointer" onclick="SetEditForm(@Model.Block2.Id,'@Model.Block2.Name','@Model.Block2.Price','@Model.Block2.Description')">
+			<i class="fa fa-heart"></i>
+			<h4 class="upc">@Model.Block2.Name</h4>
+			<p>Покупаем @Model.Block2.Name от <b>@Model.Block2.Price грн за кг</b>.</p>
+			<p style="text-align: left;">@Model.Block2.Description</p>
+		</div>
+		<div class="col-lg-4" style="cursor:pointer" onclick="SetEditForm(@Model.Block3.Id,'@Model.Block3.Name','@Model.Block3.Price','@Model.Block3.Description')">
+			<i class="fa fa-heart"></i>
+			<h4 class="upc">@Model.Block3.Name</h4>
+			<p>Покупаем @Model.Block3.Name от <b>@Model.Block3.Price грн за кг</b>.</p>
+			<p style="text-align: left;">@Model.Block3.Description</p>
+		</div>
+	</div>
+	<br>
+	<br>
+</div>
+
+<div id="dg">
+	<div class="container">
+		<div class="row">
+			<h2 class="title">Какой металл мы можем купить?</h2>
+			<br>
+			<div class="col-lg-12">
+
+
+
+				<table class="table table-bordered table-striped price-table">
+					<tr>
+						<th>№</th>
+						<th>Название металла</th>
+						<th></th>
+						<th>грн за кг</th>
+
+					</tr>
+
+
+
+					@foreach (var item in Model.ListPriceItem)
+					{
+						<tr style="cursor:pointer" onclick="SetEditForm(@item.Id,'@item.Name','@item.Price','@item.Description')">
+							<td>@item.Id</td>
+							<td class="text-left">@item.Name</td>
+							<td class="text-right">цена</td>
+							<td class="text-left">@item.Price</td>
+						</tr>
+					}
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="r">
+	<div class="container">
+		<div class="row centered">
+			<div class="col-lg-8 col-lg-offset-2">
+				<h3>ДОСТАВКА И ОПЛАТА</h3>
+				<p style="text-align: left">При покупке металла, наша компания произведёт доставку как в пределах города Киева, так и по территории всей Украины. Доставка осуществляется через, службу доставки <b>«Новая Почта»</b>, что удобно для наших клиентов так, как отделения расположены во всех населённых пунктах и городах Украины, соответственно, для того, чтобы переслать проданный металл, достаточно обратиться в ближайшее отделение <b>“Новой почты”</b>. Доставка происходит за максимально короткие сроки, а значит расчёт за продажу Вы также получаете в максимально короткие сроки.</p>
+				<p style="text-align: left">Ещё немаловажным моментом при отправке через <b>«Новую почту»</b> есть то, что всегда можно отследить местонахождение груза, соответственно, чтоб он «потерялся в пути» - практически невозможно!</p>
+
+				<h5>Оплата осуществляться следующим образом</h5>
+				<p style="text-align: left;margin:0"><i class="fa fa-star"></i> наложенным платежом</p>
+				<p style="text-align: left;margin:0"><i class="fa fa-star"></i> безналичной платежом</p>
+			</div>
+		</div>
+	</div>
+
+
+
+</div>
+
+<div class="lg" id="call">
+	<div class="container">
+		<div class="row centered">
+			<div class="col-lg-8 col-lg-offset-2">
+				<h3>Появились вопросы по покупке/продаже металла?</h3>
+			</div>
+		</div>
+		<div class="row centered">
+			<div class="col-lg-6 col-lg-offset-3">
+				@using (Html.BeginForm("S", "H", FormMethod.Post))
+				{
+					@Html.AntiForgeryToken()
+					@Html.ValidationSummary(false)
+
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">+38</div>
+							<input type="text" name="tel" required="" pattern="^[0]{1}\d{9}$" placeholder="0ХХ ХХХ ХХ ХХ" class="form-control" title="Введите правильно номер. Пример 0984947650" />
+						</div>
+					</div>
+					<textarea name="message" class="form-control" rows="5" placeholder="Напишите ваш вопрос..." required=""></textarea>
+					<br />
+					<button type="submit" class="btn btn-lg btn-info pull-right">Отправить</button>
+				}
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container wb" id="contact">
+	<div class="row centered">
+		<br><br>
+		<div class="col-lg-12">
+			<h2>Как можно с нами связаться чтобы продать металл?</h2>
+		</div>
+		<br>
+	</div>
+	<div class="row">
+		<div class="col-lg-4">
+			<table class="table">
+				<tr>
+					<td colspan="2">ТОВ НВП "РОЗРОБКА І ВПРОВАДЖЕННЯ НОВИХ МАТЕРІАЛІВ"</td>
+
+				</tr>
+				<tr>
+					<td>Телефон:</td>
+					<td><b><a href="tel:0984947650">098-49-47-650</a></b></td>
+				</tr>
+				<tr>
+					<td>Телефон:</td>
+					<td><b><a href="tel:0951522629">095-15-22-629</a></b></td>
+				</tr>
+				<tr>
+					<td>Телефон:</td>
+					<td><b><a href="tel:0444960722">044-496-07-22</a></b></td>
+				</tr>
+				<tr>
+					<td>E-mail:</td>
+					<td><b><a href="mailto:info@ukrmetal.in.ua">info@ukrmetal.in.ua</a></b></td>
+				</tr>
+				<tr>
+					<td>Факс:</td>
+					<td><b>044-496-07-22</b></td>
+				</tr>
+				<tr>
+					<td>Адрес:</td>
+					<td><b>город Киев, улица Василия Степанченко, дом 3, офис 504</b></td>
+				</tr>
+			</table>
+
+		</div>
+		<div class="col-lg-8">
+			<div id="mapwrap">
+				<iframe height="300" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1509.9419526861743!2d30.369431951534647!3d50.47071888749593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cce9bf738d3d%3A0x8b09eb687b93d076!2z0LLRg9C70LjRhtGPINCS0LDRgdC40LvRjyDQodGC0LXQv9Cw0L3Rh9C10L3QutCwLCAzLCDQmtC40ZfQsg!5e0!3m2!1sru!2sua!4v1499954765650"></iframe>
+			</div>
+			<br><br><br><br>
+		</div>
+
+	</div>
+</div>
+
+<div class="lg" id="about">
+	<div class="container">
+		<div class="row centered">
+			<div class="col-lg-8 col-lg-offset-2">
+				<h3>О нас</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2">
+				<p style="text-align: left">Деятельность нашей компании — это покупка металла. </p>
+				<p style="text-align: left">Покупкой металла и работой с клиентами мы занимаемся длительное время. За годы работы успели заслужить репутацию надёжной компании и накопили уже достаточное количество опыта, наладили процесс работы так, что можем гарантировать продажу металла в Киеве и по Украине, в кротчайшие сроки, получив своевременную оплату и качественный сервис!</p>
+				<h5>Почему Вам будет интересно продать металл именно нам?</h5>
+				<p style="text-align: left">- Во-первых, ценовая политика нашей компании максимально выгодна для продажи металла в Киеве, а также других областей Украины. Мы всегда мониторим цены на рынке Украины и предлагаем Вам наиболее выгодные. Нам вы можете продать металл по самым выгодным для Вас ценам!</p>
+				<p style="text-align: left">- Во-вторых, продажа металла нам — это получение быстрого, качественного сервиса, а соответственно экономия Вашего времени, которого в современном мире очень не хватает!</p>
+				<p style="text-align: left">- В-третьих, наши сотрудники все имеют большой опыт в сфере работы с металлом. Эти профессиональные качества помогают быстро решать нестандартные ситуации и применять к каждому клиенту индивидуальный подход!</p>
+				<p style="text-align: left">- В-четвёртых, наша основная задача — предоставить клиентам максимальные выгоды в сотрудничестве с нами. Как лояльность к нашим потенциальным клиентам, мы готовы рассматривать любые предложения и разрабатывать для них в будущем различные бонусы, например — пересмотр цен. Мы не стоим на месте – мы постоянно совершенствуемся!</p>
+				<p style="text-align: left">- В-пятых, для нас важно купить металл именно у Вас!</p>
+				<p style="text-align: left">Мы надеемся на взаимовыгодное сотрудничество, и уверенны, что партнёрство с нами принесёт Вам только положительные результаты и впечатления!</p>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div id="f">
+	<div class="container">
+		<div class="row centered">
+
+			<div class="navbar navbar-inverse">
+				<div class="container main-menu">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-f">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="/">
+							<i class="fa fa-cogs" style="padding:0"></i> ukrmetal.in.ua
+						</a>
+					</div>
+					<div class="navbar-collapse collapse navbar-collapse-f">
+						<ul class="nav navbar-nav navbar-right">
+							<li class="active"><a href="index.html">Все Цены</a></li>
+							<li><a href="services.html">Доставка и Оплата</a></li>
+							<li><a href="services.html">Заказать звонок</a></li>
+							<li><a href="about.html">Контакты</a></li>
+							<li><a href="about.html">О нас</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+@if (ViewData["Message"] != null && !string.IsNullOrEmpty(ViewData["Message"].ToString()))
+{
+	<div class="modal fade in" style="display: block" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="$(this).closest('.modal').remove()">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Информация</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row centered">
+						<h4>@ViewData["Message"]</h4>
+					</div>
+				</div>
+				@*<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Save & Go</button>
+					</div>*@
+			</div>
+		</div>
+	</div>
+}
+
+	@*<div class="extra-call">
+			<div style="text-align: center; position: relative">
+
+				<div style="margin-bottom: 5px">Нашли цену лучше чем у нас?</div>
+
+				<div style="margin-bottom: 10px;">Позвони <b style="color:red">СЕЙЧАС</b>, мы предложим ту цену, которая тебя <b style="color: red;background: rgba(0, 0, 0, 0.60);padding-right: 5px;border-radius: 5px">устроит</b>.</div>
+
+				<div style="margin-bottom: 10px;">
+					<img height="32" src="~/Images/phone.gif" />
+					Ждем Вашего звонка!!!
+					<img height="32" src="~/Images/phone.gif" />
+					<br />
+					<a style="color:red" href="tel:0984947650">
+						098-49-47-650
+					</a>,
+					<a style="color: red" href="tel:0951522629">
+						095-15-22-629
+					</a>,
+					<a style="color: red" href="tel:0444960722">
+						044-496-07-22
+					</a>
+				</div>
+
+				<img class="lava" src="~/Images/metal.gif" />
+			</div>
+		</div>*@
+
+
+
+	<div class="modal fade in edit-modal" style="display: none" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="$(this).closest('.modal').css('display','none')">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Информация</h4>
+				</div>
+				<div class="modal-body">
+					@using (Html.BeginForm("EL", "H", FormMethod.Post, new { @class = "editform" }))
+			{
+						@Html.AntiForgeryToken()
+						@Html.ValidationSummary(false)
+
+						<div class="row">
+
+
+							<div class="col-lg-12">
+								<span>№ -9999(Новый элмент)</span>
+								<input type="hidden" name="guid" value="@ViewData["guid"]" />
+								<input class="form-control" type="number" required="" name="id" value="" />
+							</div>
+							<div class="col-lg-12">
+								<span>Название металла</span>
+								<input class="form-control" type="text" name="name" required="" value="" />
+							</div>
+							<div class="col-lg-12">
+								<span>Описание</span>
+								<input class="form-control" type="text" name="description" value="" />
+							</div>
+
+							<div class="col-lg-12">
+								<span>грн за кг</span>
+								<input class="form-control" type="text" name="price" required="" value="" />
+							</div>
+							<div class="col-lg-12"><input class="btn btn-success btn-sm" type="submit" value="Сохранить" /></div>
+
+						</div>
+			}
+				</div>
+			</div>
+		</div>
+	</div>
+
+<script>
+					function SetEditForm(id, name, price, descr) {
+						var modal = document.querySelector(".edit-modal");
+						modal.style = "display:block";
+						var form1 = document.querySelector(".editform");
+						var id1 = form1.querySelector("input[name=id]");
+						var name1 = form1.querySelector("input[name=name]");
+						var price1 = form1.querySelector("input[name=price]");
+						var description1 = form1.querySelector("input[name=description]");
+						id1.value = id;
+						name1.value = name;
+						price1.value = price;
+						description1.value = descr;
+
+					}
+</script>
