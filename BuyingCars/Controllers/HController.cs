@@ -64,7 +64,7 @@ namespace BuyingMetal.Controllers
 			}
 			catch (Exception ex)
 			{
-				SendMailEx.SendMailExAsyncOrder("ОШИБКА", ex.Message);
+				SendMailEx.SendMailExAsyncMessage("ОШИБКА", ex.Message);
 				return View();
 			}
 		}
@@ -76,8 +76,6 @@ namespace BuyingMetal.Controllers
 			{
 				if (!tel.IsNullOrWhiteSpace())
 				{
-					//IMailingManager mail = new MailingManager();
-					//mail.SendMailNewOrder();
 					SendMailEx.SendMailExAsyncOrder(tel, message);
 					return RedirectToAction("I", "H", new { message = "Мы передали ваш запрос. Ожидайте звонка от нашего менеджера!" });
 				}
@@ -85,6 +83,7 @@ namespace BuyingMetal.Controllers
 			}
 			catch (Exception e)
 			{
+				SendMailEx.SendMailExAsyncMessage("ОШИБКА", e.Message);
 				return RedirectToAction("I", "H", new { message = e.Message });
 			}
 		}
@@ -242,7 +241,7 @@ namespace BuyingMetal.Controllers
 			}
 			catch (Exception ex)
 			{
-				SendMailEx.SendMailExAsyncOrder("ОШИБКА", ex.Message);
+				SendMailEx.SendMailExAsyncMessage("ОШИБКА", ex.Message);
 			}
 			return RedirectToAction("I", "H");
 		}
