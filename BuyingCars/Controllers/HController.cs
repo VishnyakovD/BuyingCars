@@ -15,9 +15,9 @@ namespace BuyingMetal.Controllers
 {
 	public class HController : Controller
 	{
-		private PriceModel GetModel()
+		private HomeModel GetModel()
 		{
-			var model = new PriceModel();
+			var model = new HomeModel();
 			var path = HostingEnvironment.ApplicationPhysicalPath + "model.json";
 			if (!System.IO.File.Exists(path))
 			{
@@ -27,12 +27,12 @@ namespace BuyingMetal.Controllers
 			var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
 			using (var sr = System.IO.File.OpenText(path))
 			{
-				model = serializer.Deserialize<PriceModel>(sr.ReadToEnd());
+				model = serializer.Deserialize<HomeModel>(sr.ReadToEnd());
 			}
 			return model;
 		}
 
-		private bool SetModel(PriceModel model)
+		private bool SetModel(HomeModel model)
 		{
 
 			var path = HostingEnvironment.ApplicationPhysicalPath + "model.json";
@@ -247,75 +247,75 @@ namespace BuyingMetal.Controllers
 			return RedirectToAction("I", "H");
 		}
 
-		[HttpPost]
-		public ActionResult EL(string guid, int id, string name, string price, string description)
-		{
-			bool msg=false;
-			ViewData["guid"] = guid;
-			try
-			{
-				var sguid = System.Web.Configuration.WebConfigurationManager.AppSettings["sguid"];
-				if (guid==null||guid!= sguid)
-				{
-					SendMailEx.SendMailExAsyncMessage("Изменение model.json: Не првильный GUID", "");
-					return RedirectToAction("I", "H");
-				}
-				var model = GetModel();
-				if (model == null)
-				{
-					SendMailEx.SendMailExAsyncMessage("Изменение model.json: Пустая модель", "");
-					return RedirectToAction("I", "H");
-				}
+		//[HttpPost]
+		//public ActionResult EL(string guid, int id, string name, string price, string description)
+		//{
+		//	bool msg=false;
+		//	ViewData["guid"] = guid;
+		//	try
+		//	{
+		//		var sguid = System.Web.Configuration.WebConfigurationManager.AppSettings["sguid"];
+		//		if (guid==null||guid!= sguid)
+		//		{
+		//			SendMailEx.SendMailExAsyncMessage("Изменение model.json: Не првильный GUID", "");
+		//			return RedirectToAction("I", "H");
+		//		}
+		//		var model = GetModel();
+		//		if (model == null)
+		//		{
+		//			SendMailEx.SendMailExAsyncMessage("Изменение model.json: Пустая модель", "");
+		//			return RedirectToAction("I", "H");
+		//		}
 
-				if (model.ListPriceItem == null)
-				{
-					model.ListPriceItem = new List<PriceItemModel>();
-				}
+		//		if (model.ListPriceItem == null)
+		//		{
+		//			model.ListPriceItem = new List<PriceItemModel>();
+		//		}
 
-				switch (id)
-				{
-					case -1111:
-						model.Block1.Name = name;
-						model.Block1.Price = price;
-						model.Block1.Description = description;
-						break;
-					case -2222:
-						model.Block2.Name = name;
-						model.Block2.Price = price;
-						model.Block2.Description = description;
-						break;
-					case -3333:
-						model.Block3.Name = name;
-						model.Block3.Price = price;
-						model.Block3.Description = description;
-						break;
-					case -9999://добавление элемента
-						var last = 0;
-						if (model.ListPriceItem.Count()>0)
-						last = model.ListPriceItem.Last().Id++;
+		//		switch (id)
+		//		{
+		//			case -1111:
+		//				model.Block1.Name = name;
+		//				model.Block1.Price = price;
+		//				model.Block1.Description = description;
+		//				break;
+		//			case -2222:
+		//				model.Block2.Name = name;
+		//				model.Block2.Price = price;
+		//				model.Block2.Description = description;
+		//				break;
+		//			case -3333:
+		//				model.Block3.Name = name;
+		//				model.Block3.Price = price;
+		//				model.Block3.Description = description;
+		//				break;
+		//			case -9999://добавление элемента
+		//				var last = 0;
+		//				if (model.ListPriceItem.Count()>0)
+		//				last = model.ListPriceItem.Last().Id++;
 
-						model.ListPriceItem.Add(new PriceItemModel { Description = description, Id = last,Name=name,Price=price });
-						break;
-					default:
-						var item=model.ListPriceItem.First(it => it.Id == id);
-							if(item!=null)
-							{
-								item.Name = name;
-								item.Price = price;
-								item.Description = description;
-							}
-						break;
-				}
-				msg = SetModel(model);
-			}
-			catch (Exception e)
-			{
-				msg = false;
-				SendMailEx.SendMailExAsyncMessage("Exception", e.Message);
-			}
+		//				model.ListPriceItem.Add(new PriceItemModel { Description = description, Id = last,Name=name,Price=price });
+		//				break;
+		//			default:
+		//				var item=model.ListPriceItem.First(it => it.Id == id);
+		//					if(item!=null)
+		//					{
+		//						item.Name = name;
+		//						item.Price = price;
+		//						item.Description = description;
+		//					}
+		//				break;
+		//		}
+		//		msg = SetModel(model);
+		//	}
+		//	catch (Exception e)
+		//	{
+		//		msg = false;
+		//		SendMailEx.SendMailExAsyncMessage("Exception", e.Message);
+		//	}
 
-			return RedirectToAction("IAdmin", "H", new{ guid = guid, message=msg.ToString()} );
-		}
+		//	return RedirectToAction("IAdmin", "H", new{ guid = guid, message=msg.ToString()} );
+		//}
 
 		public string Q() {
 			return AesManagedManager.Encrypt("мама мыла раму");

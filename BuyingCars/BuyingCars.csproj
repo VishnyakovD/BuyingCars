@@ -148,7 +148,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MailingManager.cs" />
-    <Compile Include="Models\PriceModel.cs" />
+    <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Modules\AesManagedManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -188,7 +188,6 @@
     <Content Include="Images\header-bg-orig.jpg" />
     <Content Include="Images\metal.gif" />
     <Content Include="Images\phone.gif" />
-    <Content Include="Content\img\devices.png" />
     <Content Include="Content\img\carslogo.png" />
     <Content Include="Content\img\polygonal-bg.jpg" />
     <Content Include="Content\img\sketch-logo.png" />
