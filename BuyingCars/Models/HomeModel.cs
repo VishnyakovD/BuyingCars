@@ -8,49 +8,36 @@ namespace BuyingMetal.Models
 
 	public class HomeModel
 	{
-		public List<LinkModel> HeadMenuLeft { set; get; }
-		public List<LinkModel> HeadMenuRight { set; get; }
-		public HeaderModel Header { set; get; }
+		public List<BaseModel> HeadMenuLeft { set; get; }
+		public List<BaseModel> HeadMenuRight { set; get; }
+		public List<BaseModel> Header { set; get; }
 
 		public HomeModel()
 		{
-			this.HeadMenuLeft = new List<LinkModel>();
-			this.HeadMenuRight = new List<LinkModel>();
-			this.Header = new HeaderModel();
+			this.HeadMenuLeft = new List<BaseModel>();
+			this.HeadMenuRight = new List<BaseModel>();
+			this.Header = new List<BaseModel>();
 		}
 	}
 
-	public class LinkModel
+
+	public class BaseModel
 	{
 		public int Id { set; get; }
-		public string Text { set; get; }
+		public string Body { set; get; }
+		public string Styles { set; get; }
+		public string Class { set; get; }
 		public string Href { set; get; }
-		public string Classes { set; get; }
-		public string Target { set; get; }
+		public string Src { set; get; }
 
-		public LinkModel()
+
+		public BaseModel()
 		{
-			this.Text = this.Href = this.Classes = this.Target = string.Empty;
-		}
-	}
-
-
-	public class HeaderModel
-	{
-		public int Id { set; get; }
-		public string Text1 { set; get; }
-		public string Text2 { set; get; }
-		public string Text3 { set; get; }
-		public LinkModel Link1 { set; get; }
-		public LinkModel Link2 { set; get; }
-		public LinkModel Link3 { set; get; }
-
-		public HeaderModel()
-		{
-			this.Link1 = new LinkModel();
-			this.Link2 = new LinkModel();
-			this.Link3 = new LinkModel();
-			this.Text1 = this.Text2 = this.Text3 = string.Empty;
+			Body = string.Empty;
+			Styles = string.Empty;
+			Class = string.Empty;
+			Href = string.Empty;
+			Src = string.Empty;
 		}
 	}
 

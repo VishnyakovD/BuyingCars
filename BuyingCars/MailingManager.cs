@@ -22,7 +22,6 @@ namespace BuyingMetal
 	{
 		public static Task SendMailExAsyncOrder(string tel, string msg)
 		{
-
 			var sMTPHost = WebConfigurationManager.AppSettings["SMTPHost"];
 			var sMTPPort = 25;
 			int.TryParse(WebConfigurationManager.AppSettings["SMTPPort"], out sMTPPort);
