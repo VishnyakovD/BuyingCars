@@ -170,6 +170,7 @@
     <Content Include="Content\css\sass\styles.min.css">
       <DependentUpon>styles.css</DependentUpon>
     </Content>
+    <Content Include="Content\img\head-OLD.jpg" />
     <Content Include="Content\img\head.jpg" />
     <Content Include="Content\img\money.png" />
     <Content Include="Content\img\money2.png" />
